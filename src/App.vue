@@ -1,48 +1,71 @@
 <template>
-  <div class="container">
-    <h1>Employee Management</h1>
+  <div class="container mt-4">
+
+    <h2 class="text-center mb-4">Employee Management</h2>
 
     <!-- FORM -->
-    <form @submit.prevent="addEmployee">
-      <input v-model="name" placeholder="Name" required />
-      <input v-model="designation" placeholder="Designation" required />
-      <input v-model="department" placeholder="Department" required />
-      <input v-model="salary" type="number" placeholder="Salary" required />
-      <button>
-        {{ editId ? "Update" : "Add Employee" }}
-      </button>
-    </form>
+    <div class="card shadow p-4 mb-4">
+      <h4 class="mb-3">Add Employee</h4>
+
+      <form @submit.prevent="addEmployee" class="row g-3">
+        <div class="col-md-3">
+          <input v-model="name" class="form-control" placeholder="Name" required />
+        </div>
+
+        <div class="col-md-3">
+          <input v-model="designation" class="form-control" placeholder="Designation" required />
+        </div>
+
+        <div class="col-md-3">
+          <input v-model="department" class="form-control" placeholder="Department" required />
+        </div>
+
+        <div class="col-md-2">
+          <input v-model="salary" type="number" class="form-control" placeholder="Salary" required />
+        </div>
+
+        <div class="col-md-1">
+          <button class="btn btn-primary w-100">
+            {{ editId ? "Update" : "Add" }}
+          </button>
+        </div>
+      </form>
+    </div>
 
     <!-- TABLE -->
-    <table border="1" width="100%" style="margin-top:20px">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Name</th>
-          <th>Designation</th>
-          <th>Department</th>
-          <th>Salary</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
+    <div class="card shadow p-3">
+      <h4 class="mb-3">Employees</h4>
 
-      <tbody>
-        <tr v-for="(emp, index) in employees" :key="emp.id">
-          <td>{{ index + 1 }}</td>
-          <td>{{ emp.name }}</td>
-          <td>{{ emp.designation }}</td>
-          <td>{{ emp.department }}</td>
-          <td>₹{{ emp.salary }}</td>
-          <td>
-            <button @click="editEmployee(emp)">Edit</button>
-            <button @click="deleteEmployee(emp.id)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Department</th>
+            <th>Salary</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr v-for="(emp, index) in employees" :key="emp.id">
+            <td>{{ index + 1 }}</td>
+            <td>{{ emp.name }}</td>
+            <td>{{ emp.designation }}</td>
+            <td>{{ emp.department }}</td>
+            <td>₹{{ emp.salary }}</td>
+            <td>
+              <button class="btn btn-warning btn-sm me-2" @click="editEmployee(emp)">Edit</button>
+              <button class="btn btn-danger btn-sm" @click="deleteEmployee(emp.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 </template>
-
 <script>
 import axios from "axios"
 
