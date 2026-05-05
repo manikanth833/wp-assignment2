@@ -1,10 +1,11 @@
-<style>
-body {
+
+.container {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
   background: #f4f6fb;
+  min-height: 100vh;
+  padding: 20px;
 }
-
 /* HEADER */
 .header {
   background: linear-gradient(90deg, #5f7cff, #8a4fff);
@@ -96,4 +97,3 @@ tr {
   padding: 5px 10px;
   border-radius: 5px;
 }
-</style>
